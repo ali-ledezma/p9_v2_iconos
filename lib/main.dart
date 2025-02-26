@@ -11,48 +11,35 @@ class MisIconosApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Column( // Use a Column to stack the title and subtitle
-            mainAxisAlignment: MainAxisAlignment.center, // Center the Column's content
-            children: <Widget>[
-              Text("diego ali ledezma carbajal"),
-              Text("diego ledezma 22308051281229",
-                  style: TextStyle(fontSize: 14)), // Smaller font for subtitle
-            ],
-          ),
+          title: Text("diego ali ledezma carbajal"),
           titleTextStyle: TextStyle(color: Color(0xff083c49), fontSize: 20),
           centerTitle: true,
           backgroundColor: Colors.cyanAccent,
         ),
         body: Center(
-          child: Column( // Use a Column to stack the text and icons
+          child: Column(
+            // Main Column to stack rows vertically
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Removed the original Text widget from the Row
-              // The text is now in the AppBar
+              // First horizontal row of icons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // Columna izquierda de íconos
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _buildIconWithSubtitle(Icons.login, "Login", Colors.pink),
-                      _buildIconWithSubtitle(Icons.start, "Start", Colors.green),
-                      _buildIconWithSubtitle(Icons.person, "Person", Colors.blue),
-                    ],
-                  ),
-                  SizedBox(width: 40), // Espacio entre las columnas
-                  // Columna derecha de íconos
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _buildIconWithSubtitle(Icons.home, "Home", Colors.orange),
-                      _buildIconWithSubtitle(
-                          Icons.settings, "Settings", Colors.grey),
-                      _buildIconWithSubtitle(
-                          Icons.favorite, "Favorite", Colors.red),
-                    ],
-                  ),
+                  _buildIconWithSubtitle(Icons.login, "Login", Colors.pink),
+                  _buildIconWithSubtitle(Icons.start, "Start", Colors.green),
+                  _buildIconWithSubtitle(Icons.person, "Person", Colors.blue),
+                ],
+              ),
+              SizedBox(height: 20), // Space between rows
+              // Second horizontal row of icons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _buildIconWithSubtitle(Icons.home, "Home", Colors.orange),
+                  _buildIconWithSubtitle(
+                      Icons.settings, "Settings", Colors.grey),
+                  _buildIconWithSubtitle(
+                      Icons.favorite, "Favorite", Colors.red),
                 ],
               ),
             ],
@@ -66,7 +53,8 @@ class MisIconosApp extends StatelessWidget {
   Widget _buildIconWithSubtitle(
       IconData iconData, String subtitle, Color color) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(
+          horizontal: 16.0, vertical: 8.0), //added horizontal padding
       child: Column(
         children: <Widget>[
           Icon(
@@ -74,3 +62,9 @@ class MisIconosApp extends StatelessWidget {
             color: color,
             size: 30.0,
           ),
+          Text(subtitle),
+        ],
+      ),
+    );
+  }
+}
