@@ -1,43 +1,76 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MisIconosApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class MisIconosApp extends StatelessWidget {
+  const MisIconosApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Column( // Use a Column to stack the title and subtitle
+            mainAxisAlignment: MainAxisAlignment.center, // Center the Column's content
+            children: <Widget>[
+              Text("diego ali ledezma carbajal"),
+              Text("diego ledezma 22308051281229",
+                  style: TextStyle(fontSize: 14)), // Smaller font for subtitle
+            ],
+          ),
+          titleTextStyle: TextStyle(color: Color(0xff083c49), fontSize: 20),
+          centerTitle: true,
+          backgroundColor: Colors.cyanAccent,
+        ),
+        body: Center(
+          child: Column( // Use a Column to stack the text and icons
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Removed the original Text widget from the Row
+              // The text is now in the AppBar
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // Columna izquierda de íconos
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _buildIconWithSubtitle(Icons.login, "Login", Colors.pink),
+                      _buildIconWithSubtitle(Icons.start, "Start", Colors.green),
+                      _buildIconWithSubtitle(Icons.person, "Person", Colors.blue),
+                    ],
+                  ),
+                  SizedBox(width: 40), // Espacio entre las columnas
+                  // Columna derecha de íconos
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _buildIconWithSubtitle(Icons.home, "Home", Colors.orange),
+                      _buildIconWithSubtitle(
+                          Icons.settings, "Settings", Colors.grey),
+                      _buildIconWithSubtitle(
+                          Icons.favorite, "Favorite", Colors.red),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-}
+
+  // Widget reutilizable para crear un ícono con su subtítulo
+  Widget _buildIconWithSubtitle(
+      IconData iconData, String subtitle, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        children: <Widget>[
+          Icon(
+            iconData,
+            color: color,
+            size: 30.0,
+          ),
